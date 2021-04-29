@@ -1,0 +1,13 @@
+kind: Service
+apiVersion: v1
+metadata:
+  name: node-service
+spec:
+  selector:
+    app: {{ .Values.name }}
+  type: LoadBalancer
+  ports:
+  - name: node-port
+    port: {{ .Values.env.nodePort }}
+  - name: client-port
+    port: {{ .Values.env.clientPort }}

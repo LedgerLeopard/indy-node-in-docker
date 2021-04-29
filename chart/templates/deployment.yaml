@@ -1,0 +1,58 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name:  {{ .Values.name }}
+  labels:
+    app:  {{ .Values.name }}
+spec:
+  strategy:
+    type: Recreate
+  replicas: 1
+  selector:
+    matchLabels:
+      app: {{ .Values.name }}
+  template:
+    metadata:
+      labels:
+        app: {{ .Values.name }}
+    spec:
+      containers:
+      - image: {{ .Values.image }}
+        name: {{ .Values.name }}
+        env:
+        - name: NODE_NAME
+          value: {{ .Values.env.nodeName }}
+        - name: NETWORK_NAME
+          value: {{ .Values.env.networkName }}
+        - name: NODE_PORT
+          value: {{ .Values.env.nodePort | quote }}
+        - name: CLIENT_PORT
+          value: {{ .Values.env.clientPort | quote }}
+        - name: NODE_SEED
+          valueFrom:
+            secretKeyRef:
+              name: node-secret
+              key: seed
+        ports:
+        - containerPort: {{ .Values.env.nodePort }}
+          name:  node-port
+        - containerPort: {{ .Values.env.clientPort }}
+          name: client-port
+        imagePullPolicy: IfNotPresent
+        volumeMounts:
+          - name:  pool
+            mountPath: /var/lib/indy/{{ .Values.env.networkName }}/pool_transactions_genesis
+            subPath: pool_transactions_genesis
+            readOnly: true
+          - name:  domain
+            mountPath: /var/lib/indy/{{ .Values.env.networkName }}/domain_transactions_genesis
+            subPath: domain_transactions_genesis
+            readOnly: true
+      restartPolicy: Always
+      volumes:
+        - name: pool
+          secret:
+            secretName: pool-secret
+        - name: domain
+          secret:
+            secretName: domain-secret

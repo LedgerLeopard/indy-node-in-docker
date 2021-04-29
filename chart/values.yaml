@@ -1,0 +1,8 @@
+name: indy-node
+image: psyhitus/indy-docker:1.6.83
+env:
+  nodeName: <node name>
+  networkName: <network name>
+  nodePort: 9701
+  clientPort: 9702
+  seed: <put node seed here>

@@ -1,0 +1,7 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name:  pool-secret
+data:
+  pool_transactions_genesis: <put pool_transactions_genesis in base64 here>
+type: Opaque
