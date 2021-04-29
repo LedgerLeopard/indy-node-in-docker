@@ -3,7 +3,7 @@
 Image for node running:
 
 ```sh
-$ docker build -t indy-node -f node.Dockerfile --build-arg version=<version> .
+$ docker build -t indy-node --build-arg version=<version> .
 ```
 
 Args:
