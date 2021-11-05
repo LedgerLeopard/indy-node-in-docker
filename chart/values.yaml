@@ -1,8 +1,14 @@
 name: indy-node
-image: psyhitus/indy-docker:1.6.83
+image: psyhitus/indy-docker:latest
 env:
   nodeName: <node name>
   networkName: <network name>
   nodePort: 9701
   clientPort: 9702
   seed: <put node seed here>
+service:
+  type: LoadBalancer
+  clusterIP: <internal cluster IP or empty>
+indy:
+  pool: <base64 content of pool file>
+  domain: <base64 content of domain file>

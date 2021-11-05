@@ -3,5 +3,5 @@ kind: Secret
 metadata:
   name:  pool-secret
 data:
-  pool_transactions_genesis: <put pool_transactions_genesis in base64 here>
+  pool_transactions_genesis: {{ .Values.indy.pool }}
 type: Opaque

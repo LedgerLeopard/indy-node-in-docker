@@ -3,5 +3,5 @@ kind: Secret
 metadata:
   name:  domain-secret
 data:
-  domain_transactions_genesis: <put domain_transactions_genesis in base64 here>
+  domain_transactions_genesis: {{ .Values.indy.domain }}
 type: Opaque
