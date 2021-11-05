@@ -1,7 +1,7 @@
 kind: Service
 apiVersion: v1
 metadata:
-  name: node-service
+  name: {{ .Values.name }}-node-service
 spec:
   {{- if .Values.service.clusterIP }}
   clusterIP: {{ .Values.service.clusterIP }}
