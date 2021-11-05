@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Secret
 metadata:
-  name:  pool-secret
+  name:  {{ .Values.name }}-pool-secret
 data:
   pool_transactions_genesis: {{ .Values.indy.pool }}
 type: Opaque
