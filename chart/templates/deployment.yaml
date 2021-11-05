@@ -31,7 +31,7 @@ spec:
         - name: NODE_SEED
           valueFrom:
             secretKeyRef:
-              name: node-secret
+              name: {{ .Values.name }}-node-secret
               key: seed
         ports:
         - containerPort: {{ .Values.env.nodePort }}
