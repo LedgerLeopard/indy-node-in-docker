@@ -52,7 +52,7 @@ spec:
       volumes:
         - name: pool
           secret:
-            secretName: pool-secret
+            secretName: {{ .Values.name }}-pool-secret
         - name: domain
           secret:
-            secretName: domain-secret
+            secretName: {{ .Values.name }}-domain-secret
